@@ -7,9 +7,9 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5dc; /* Beige/crème clair */
+    background-color: rgb(247, 217, 252); /* Lavender Veil */
     display: flex;
-    justify-content: flex-end; /* Aligne le conteneur à droite */
+    justify-content: flex-end;
     align-items: center;
     min-height: 100vh;
     margin: 0;
@@ -24,32 +24,33 @@ body {
     border-radius: 8px;
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
     text-align: left;
-    margin-right: 5%; /* Espace depuis la droite */
+    margin-right: 5%;
 }
 
 h1 {
     font-size: 28px;
     font-weight: 600;
-    color: #333;
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     margin-bottom: 15px;
     text-align: center;
 }
 
 .connexion-container > p {
-    color: #666;
+    color: rgb(91, 28, 46); /* Night Bordeaux */
     font-size: 14px;
     margin-bottom: 30px;
     text-align: center;
 }
 
 .connexion-container > p a {
-    color: #5a6e4a;
+    color: rgb(194, 40, 107); /* Hot Rose */
     text-decoration: none;
     font-weight: 600;
 }
 
 .connexion-container > p a:hover {
     text-decoration: underline;
+    color: rgb(250, 185, 64); /* Sunflower Gold */
 }
 
 form {
@@ -59,7 +60,7 @@ form {
 
 label {
     font-size: 14px;
-    color: #333;
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     margin-bottom: 8px;
     font-weight: 500;
     display: block;
@@ -69,7 +70,7 @@ input {
     width: 100%;
     padding: 12px 15px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(91, 28, 46); /* Night Bordeaux */
     border-radius: 4px;
     outline: none;
     transition: border-color 0.3s ease;
@@ -78,12 +79,12 @@ input {
 }
 
 input:focus {
-    border-color: #5a6e4a;
-    box-shadow: 0 0 0 2px rgba(90, 110, 74, 0.1);
+    border-color: rgb(250, 185, 64); /* Sunflower Gold */
+    box-shadow: 0 0 0 2px rgba(250, 185, 64, 0.2);
 }
 
 form a {
-    color: #5a6e4a;
+    color: rgb(194, 40, 107); /* Hot Rose */
     text-decoration: none;
     font-size: 13px;
     margin-top: 5px;
@@ -92,11 +93,12 @@ form a {
 
 form a:hover {
     text-decoration: underline;
+    color: rgb(250, 185, 64); /* Sunflower Gold */
 }
 
 button {
-    background-color: #000000;
-    color: white;
+    background-color: rgb(250, 185, 64); /* Sunflower Gold */
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     border: none;
     padding: 14px 20px;
     font-size: 16px;
@@ -110,16 +112,17 @@ button {
 }
 
 button:hover {
-    background-color: #81857d;
+    background-color: rgb(194, 40, 107); /* Hot Rose */
+    color: white;
     transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 button:active {
     transform: translateY(0);
 }
 
-/* Responsive design */
+/* Responsive */
 @media (max-width: 768px) {
     body {
         justify-content: center;
