@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: #f5f5dc; /* Beige/crème clair */
+    background-color: rgb(247, 217, 252); /* Lavender Veil */
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -20,26 +20,27 @@ body {
 h1 {
     font-size: 28px;
     font-weight: 600;
-    color: #333;
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     text-align: center;
     margin-bottom: 15px;
 }
 
 body > p {
     text-align: center;
-    color: #555;
+    color: rgb(91, 28, 46); /* Night Bordeaux */
     font-size: 14px;
     margin-bottom: 30px;
 }
 
 body > p a {
-    color: #5a6e4a;
+    color: rgb(194, 40, 107); /* Hot Rose */
     text-decoration: none;
     font-weight: 500;
 }
 
 body > p a:hover {
     text-decoration: underline;
+    color: rgb(250, 185, 64); /* Sunflower Gold */
 }
 
 .inscription-container {
@@ -59,7 +60,7 @@ form {
 
 label {
     font-size: 14px;
-    color: #333;
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     margin-bottom: 8px;
     font-weight: 500;
     display: block;
@@ -69,31 +70,31 @@ input, select {
     width: 100%;
     padding: 12px 15px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(91, 28, 46); /* Night Bordeaux */
     border-radius: 4px;
     outline: none;
-    transition: border-color 0.3s ease;
+    transition: all 0.3s ease;
     background-color: #fff;
     font-family: inherit;
 }
 
 input:focus, select:focus {
-    border-color: #5a6e4a;
-    box-shadow: 0 0 0 2px rgba(90, 110, 74, 0.1);
+    border-color: rgb(250, 185, 64); /* Sunflower Gold */
+    box-shadow: 0 0 0 2px rgba(250, 185, 64, 0.2);
 }
 
 select {
     cursor: pointer;
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23333' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23911C3E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 15px center;
     background-size: 16px;
 }
 
 button {
-    background-color: #000000;
-    color: white;
+    background-color: rgb(250, 185, 64); /* Sunflower Gold */
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     border: none;
     padding: 14px 20px;
     font-size: 16px;
@@ -101,35 +102,23 @@ button {
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
-    transition: background-color 0.3s ease;
+    transition: all 0.3s ease;
     margin-top: 10px;
     font-family: inherit;
 }
 
 button:hover {
-    background-color: #5a5e58;
+    background-color: rgb(194, 40, 107); /* Hot Rose */
+    color: white;
     transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Espacement entre les champs du formulaire */
-form label, form input, form select {
-    margin-bottom: 0;
+button:active {
+    transform: translateY(0);
 }
 
-
-
-/* Style pour les champs avec validations (icônes ✓) */
-/* Si vous voulez ajouter les coches vertes comme sur l'image */
-input:valid:not(:placeholder-shown) {
-    border-color: #5a6e4a;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%235a6e4a' stroke-width='3' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='20 6 9 17 4 12'%3e%3c/polyline%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right 15px center;
-    background-size: 18px;
-}
-
-/* Responsive design */
+/* Responsive */
 @media (max-width: 600px) {
     .inscription-container {
         padding: 25px;
@@ -141,15 +130,5 @@ input:valid:not(:placeholder-shown) {
     
     input, select, button {
         padding: 10px 12px;
-    }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 20px 15px;
-    }
-    
-    .inscription-container {
-        padding: 20px;
     }
 }
