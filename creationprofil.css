@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(247,217,252); /* Beige/crème clair */
+    background-color: rgb(247, 217, 252); /* Lavender Veil */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,7 +29,7 @@ body {
 h1 {
     font-size: 24px;
     font-weight: 600;
-    color: #333;
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     text-align: center;
     margin-bottom: 30px;
 }
@@ -41,17 +41,18 @@ form {
 
 label {
     font-size: 14px;
-    color: #555;
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     margin-bottom: 8px;
     font-weight: 500;
     display: block;
+    text-align: left;
 }
 
-input, select {
+input, select, textarea {
     width: 100%;
     padding: 12px 15px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(91, 28, 46); /* Night Bordeaux */
     border-radius: 4px;
     outline: none;
     transition: all 0.3s ease;
@@ -59,15 +60,17 @@ input, select {
     font-family: inherit;
 }
 
-input:focus, select:focus {
-    border-color: #5a6e4a;
-    box-shadow: 0 0 0 2px rgba(90, 110, 74, 0.1);
+input:focus, select:focus, textarea:focus {
+    border-color: rgb(250, 185, 64); /* Sunflower Gold */
+    box-shadow: 0 0 0 2px rgba(250, 185, 64, 0.2);
 }
 
-/* Style spécifique pour le champ fichier */
+textarea {
+    resize: vertical;
+}
+
 input[type="file"] {
     padding: 10px;
-    border: 1px solid #ccc;
     background-color: #fafafa;
     cursor: pointer;
 }
@@ -76,7 +79,6 @@ input[type="file"]:hover {
     background-color: #f5f5f5;
 }
 
-/* Aperçu de l'avatar */
 #preview {
     width: 120px;
     height: 120px;
@@ -84,24 +86,22 @@ input[type="file"]:hover {
     object-fit: cover;
     margin-top: 15px;
     margin-bottom: 10px;
-    border: 3px solid #e0e0e0;
+    border: 3px solid rgb(250, 185, 64); /* Sunflower Gold */
     background-color: #f9f9f9;
 }
 
-/* Style du sélecteur */
 select {
     cursor: pointer;
     appearance: none;
-    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23555' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23911C3E' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
     background-repeat: no-repeat;
     background-position: right 15px center;
     background-size: 16px;
 }
 
-/* Bouton Valider */
 button {
-    background-color: rgb(91,28,46);
-    color: white;
+    background-color: rgb(250, 185, 64); /* Sunflower Gold */
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     border: none;
     padding: 14px 20px;
     font-size: 16px;
@@ -115,31 +115,17 @@ button {
 }
 
 button:hover {
-    background-color: #924c60;
+    background-color: rgb(194, 40, 107); /* Hot Rose */
+    color: white;
     transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
 button:active {
     transform: translateY(0);
 }
 
-/* Espacement des champs */
-.enregistrement {
-    margin-top: 10px;
-}
-
-.enregistrement label {
-    font-weight: 600;
-    color: #333;
-    margin-top: 15px;
-}
-
-.enregistrement label:first-of-type {
-    margin-top: 0;
-}
-
-/* Responsive design */
+/* Responsive */
 @media (max-width: 600px) {
     .creation-container {
         padding: 25px;
@@ -147,10 +133,9 @@ button:active {
     
     h1 {
         font-size: 22px;
-        margin-bottom: 25px;
     }
     
-    input, select, button {
+    input, select, button, textarea {
         padding: 10px 12px;
     }
     
@@ -158,36 +143,4 @@ button:active {
         width: 100px;
         height: 100px;
     }
-}
-
-@media (max-width: 480px) {
-    body {
-        padding: 20px 15px;
-    }
-    
-    .creation-container {
-        padding: 20px;
-    }
-    
-    h1 {
-        font-size: 20px;
-    }
-}
-
-textarea {
-    width: 100%;
-    padding: 12px 15px;
-    font-size: 14px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    outline: none;
-    transition: border-color 0.3s ease;
-    background-color: #fff;
-    font-family: inherit;
-    resize: vertical;
-}
-
-textarea:focus {
-    border-color: #5a6e4a;
-    box-shadow: 0 0 0 2px rgba(90, 110, 74, 0.1);
 }
