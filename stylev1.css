@@ -1,0 +1,446 @@
+/* ========== RESET & COULEURS ========== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: system-ui, 'Segoe UI', monospace;
+    background: #F7D9FC;
+    color: #25104D;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+/* ========== LAYOUT AVEC SIDEBAR ========== */
+.app-layout {
+    display: flex;
+    flex: 1;
+    gap: 1rem;
+}
+
+/* Sidebar Dark Amethyst */
+.sidebar {
+    background: #25104D;
+    border-right: 1px solid rgba(91, 28, 46, 0.2);
+    border-radius: 20px;
+    margin: 12px 0 12px 12px;
+    width: 80px;
+    transition: width 0.2s ease;
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 24px);
+    position: sticky;
+    top: 12px;
+    overflow: hidden;
+}
+.sidebar:hover {
+    width: 260px;
+}
+.sidebar-header {
+    display: flex;
+    justify-content: flex-end;
+    padding: 1rem;
+}
+.hamburger {
+    font-size: 1.6rem;
+    color: white;
+    cursor: default;
+}
+.profil-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 1rem 0;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+.avatar {
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    object-fit: cover;
+    background: #FAB940;
+}
+.profil-nom {
+    margin-top: 0.5rem;
+    font-weight: 500;
+    font-size: 0.85rem;
+    white-space: nowrap;
+    display: none;
+    color: white;
+}
+.sidebar:hover .profil-nom {
+    display: block;
+}
+.nav-principale {
+    list-style: none;
+    margin-top: 1rem;
+    flex: 1;
+}
+.nav-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;   /* centrage horizontal */
+    gap: 0.8rem;
+    cursor: pointer;
+    transition: all 0.2s;
+    white-space: nowrap;
+    border-radius: 30px;
+    margin: 0.2rem 0.5rem;
+    padding: 0.7rem 0;
+    color: white;
+}
+.nav-item:hover {
+    background: #C2286B;
+}
+.nav-icon {
+    font-size: 1.4rem;
+    width: 32px;
+    text-align: center;
+    flex-shrink: 0;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.nav-item span:last-child {
+    display: none;
+}
+.sidebar:hover .nav-item {
+    justify-content: flex-start;
+    padding: 0.7rem 1rem;
+}
+.sidebar:hover .nav-item span:last-child {
+    display: inline;
+}
+.nav-item a {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    text-decoration: none;
+    color: white;
+    width: 100%;
+    justify-content: center;
+}
+.sidebar:hover .nav-item a {
+    justify-content: flex-start;
+}
+
+/* ========== CONTENU PRINCIPAL ========== */
+.content-wrapper {
+    flex: 1;
+    display: flex;
+    gap: 1.5rem;
+    padding: 2rem 2rem 2rem 0;
+    max-width: 1200px;
+    margin: 0 auto;
+}
+.feed {
+    flex: 1;
+    max-width: 700px;
+}
+.right-sidebar {
+    width: 280px;
+    flex-shrink: 0;
+    position: sticky;
+    top: 24px;
+    height: fit-content;
+}
+
+/* Cartes communes */
+.tendances, .recommandations, .create-post, .publication,
+.param-card, .carte-blanche, .infos-compte, .liste-bloques li,
+.signalement-item, .carte-lien, .faq-item, .conditions-container,
+.formulaire-aide {
+    background: #FFFFFF;
+    border-radius: 20px;
+    padding: 1rem;
+    margin-bottom: 1.5rem;
+    border: 1px solid rgba(91, 28, 46, 0.1);
+    box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+}
+
+.param-card, .carte-blanche, .infos-compte {
+    padding: 1.5rem;
+}
+.infos-compte {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 0.8rem 1rem;
+    background: #F8F4FF;
+}
+
+/* ===== BOUTONS D'ACTION (photo, sondage, lien, événement) ===== */
+.post-actions {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 0.8rem;
+    margin-top: 0.8rem;
+    align-items: center;
+}
+.action-icon {
+    background: #F8F4FF;
+    border: 1px solid rgba(91, 28, 46, 0.3);
+    border-radius: 40px;
+    padding: 0.4rem 0.9rem;
+    cursor: pointer;
+    font-size: 0.9rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    transition: 0.2s;
+    color: #25104D;
+    text-decoration: none;
+}
+.action-icon:hover {
+    background: #FAB940;
+    border-color: #FAB940;
+}
+
+/* Boutons génériques */
+button, .btn-publier, .btn-envoyer, .btn-debloquer, .btn-suivre {
+    background: none;
+    border: 1px solid #C2286B;
+    padding: 0.5rem 1.2rem;
+    border-radius: 40px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: 500;
+    color: #C2286B;
+    transition: 0.2s;
+}
+button:hover, .btn-publier:hover, .btn-envoyer:hover, .btn-debloquer:hover, .btn-suivre:hover {
+    background: #C2286B;
+    color: white;
+}
+.btn-publier, .btn-envoyer {
+    background: #FAB940;
+    border: none;
+    color: #25104D;
+}
+.btn-publier:hover, .btn-envoyer:hover {
+    background: #C2286B;
+    color: white;
+}
+
+/* Suppression du soulignement des noms d'utilisateurs */
+.pub-avatar, .pub-nom {
+    text-decoration: none;
+    color: inherit;
+}
+.pub-avatar:hover, .pub-nom:hover {
+    text-decoration: underline;
+}
+
+/* Le reste (onglets, commentaires, etc.) reste inchangé et fonctionnel */
+/* (je garde les règles existantes pour ne rien casser) */
+.tabs-bar {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    border-bottom: 1px solid rgba(91, 28, 46, 0.2);
+    margin-bottom: 1.5rem;
+    flex-wrap: wrap;
+}
+.tab {
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    font-weight: 500;
+    color: #5B1C2E;
+    border-bottom: 2px solid transparent;
+}
+.tab.active {
+    color: #C2286B;
+    border-bottom-color: #C2286B;
+}
+.search-wrapper input, .search-box input {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid rgba(91, 28, 46, 0.3);
+    background: white;
+    font-size: 0.85rem;
+    border-radius: 30px;
+    width: 180px;
+    color: #25104D;
+}
+.create-post textarea {
+    width: 100%;
+    border: 1px solid rgba(91, 28, 46, 0.3);
+    border-radius: 16px;
+    padding: 0.8rem;
+    font-family: inherit;
+    font-size: 0.9rem;
+    resize: vertical;
+}
+.publication {
+    margin-bottom: 1rem;
+}
+.pub-header {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 0.5rem;
+}
+.pub-avatar {
+    width: 40px;
+    height: 40px;
+    background: #FAB940;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #25104D;
+}
+.pub-nom {
+    font-weight: bold;
+    color: #25104D;
+}
+.pub-date {
+    font-size: 0.7rem;
+    color: #5B1C2E;
+}
+.pub-contenu {
+    margin: 0.8rem 0;
+}
+.pub-stats {
+    display: flex;
+    gap: 1rem;
+    border-top: 1px solid rgba(91, 28, 46, 0.2);
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+    font-size: 0.8rem;
+}
+.hashtag {
+    display: block;
+    padding: 0.4rem 0;
+    font-size: 0.9rem;
+    color: #C2286B;
+    cursor: pointer;
+}
+.hashtag:hover {
+    text-decoration: underline;
+    color: #FAB940;
+}
+.compte-reco {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+    margin-bottom: 1rem;
+}
+.reco-avatar {
+    width: 40px;
+    height: 40px;
+    background: #FAB940;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    color: #25104D;
+}
+.reco-info {
+    flex: 1;
+}
+.reco-nom {
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+.reco-pseudo {
+    font-size: 0.7rem;
+    color: #5B1C2E;
+}
+
+/* Menu trois points - popup stylisé */
+.pub-menu {
+    position: relative;
+    cursor: pointer;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 0 0.5rem;
+    margin-left: auto;
+}
+.popup-menu {
+    position: absolute;
+    right: 0;
+    top: 1.8rem;
+    background: #FFFFFF;
+    border: 1px solid rgba(91, 28, 46, 0.2);
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    display: none;
+    z-index: 1000;
+    min-width: 110px;
+    overflow: hidden;
+}
+.popup-menu a {
+    display: block;
+    padding: 0.6rem 1rem;
+    text-decoration: none;
+    color: #25104D;
+    font-size: 0.85rem;
+    transition: background 0.2s;
+    border-bottom: 1px solid #f0f0f0;
+}
+.popup-menu a:last-child {
+    border-bottom: none;
+}
+.popup-menu a:hover {
+    background: #F8F4FF;
+    color: #C2286B;
+}
+
+/* ========== COULEURS DES ICÔNES FONT AWESOME ========== */
+/* Icônes de la sidebar (blanches par défaut, or au survol) */
+.nav-icon i {
+    color: #FFFFFF;
+    transition: color 0.2s;
+}
+.nav-item:hover .nav-icon i {
+    color: #FAB940;  /* Sunflower Gold */
+}
+
+/* Icônes des boutons d'action (photo, sondage, etc.) */
+.action-icon i {
+    margin-right: 4px;
+    color: #25104D;
+}
+.action-icon:hover i {
+    color: #25104D;
+}
+
+/* Icônes des likes et commentaires */
+.like-btn i, .comment-btn i {
+    margin-right: 4px;
+}
+.like-btn:hover i, .comment-btn:hover i {
+    color: #C2286B;
+}
+
+/* Icône de menu trois points */
+.pub-menu i {
+    color: #5B1C2E;
+}
+.pub-menu:hover i {
+    color: #C2286B;
+}
+
+/* Icônes dans la colonne droite (tendances, recommandations) */
+.hashtag i, .compte-reco i {
+    margin-right: 6px;
+    color: #C2286B;
+}
+.hashtag:hover i, .compte-reco:hover i {
+    color: #FAB940;
+}
+footer {
+    text-align: center;
+    padding: 1rem;
+    border-top: 1px solid rgba(91, 28, 46, 0.15);
+    font-size: 0.8rem;
+    background: #F7D9FC;
+    color: #25104D;
+    margin-top: auto;
+}
