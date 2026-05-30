@@ -1,0 +1,52 @@
+//Requêtes pour la base de données 'ConnectHub'
+
+//Table 'utilisateurs'
+CREATE TABLE utilisateurs (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    pseudo VARCHAR(50) NOT NULL UNIQUE,
+    email VARCHAR(100) NOT NULL UNIQUE,
+    password_hash VARCHAR(255) NOT NULL,
+    nom VARCHAR(50),
+    prenom VARCHAR(50),
+    date_naissance DATE,
+    genre ENUM('homme', 'femme', 'autre'),
+    telephone VARCHAR(20),
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
+
+//Table 'profil_utilisateurs'
+CREATE TABLE profil_utilisateurs (
+    user_id INT PRIMARY KEY,
+    description TEXT,
+    avatar_url VARCHAR(255),
+    centre_interet_principal INT NULL,
+    FOREIGN KEY (user_id) REFERENCES utilisateurs(id) ON DELETE CASCADE
+);
+
+//Table 'interets'
+CREATE TABLE interets (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    nom VARCHAR(50) NOT NULL UNIQUE
+);
+
+//Différents centres d'intérêts
+INSERT INTO interets (nom) VALUES
+('Théâtre'),
+('Musique'),
+('Sculpture'),
+('Écriture'),
+('Cinéma'),
+('Peinture'),
+('Danse'),
+('Photographie'),
+('Dessin');
+
+//Table 'interets_utilisateurs'
+CREATE TABLE interets_utilisateurs (
+    user_id INT,
+    interet_id INT,
+    PRIMARY KEY (user_id, interet_id),
+    FOREIGN KEY (user_id) REFERENCES utilisateurs(id) ON DELETE CASCADE,
+    FOREIGN KEY (interest_id) REFERENCES interets(id) ON DELETE CASCADE
+);
