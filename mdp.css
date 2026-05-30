@@ -7,7 +7,7 @@
 
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    background-color: rgb(247,217,252); /* Beige/crème clair */
+    background-color: rgb(247, 217, 252); /* Lavender Veil */
     display: flex;
     justify-content: center;
     align-items: center;
@@ -29,14 +29,14 @@ body {
 h1 {
     font-size: 24px;
     font-weight: 600;
-    color: #333;
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     margin-bottom: 25px;
     text-align: center;
 }
 
 .mdp-container p {
     font-size: 14px;
-    color: #555;
+    color: rgb(91, 28, 46); /* Night Bordeaux */
     margin-bottom: 20px;
     font-weight: 500;
     text-align: center;
@@ -49,7 +49,7 @@ form {
 
 label {
     font-size: 14px;
-    color: #333;
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     margin-bottom: 8px;
     font-weight: 500;
 }
@@ -58,15 +58,21 @@ input {
     width: 100%;
     padding: 12px 15px;
     font-size: 14px;
-    border: 1px solid #ccc;
+    border: 1px solid rgb(91, 28, 46); /* Night Bordeaux */
     border-radius: 4px;
     outline: none;
+    transition: border-color 0.3s ease;
     background-color: #fff;
 }
 
+input:focus {
+    border-color: rgb(250, 185, 64); /* Sunflower Gold */
+    box-shadow: 0 0 0 2px rgba(250, 185, 64, 0.2);
+}
+
 button {
-    background-color: #912846; 
-    color: white;
+    background-color: rgb(250, 185, 64); /* Sunflower Gold */
+    color: rgb(37, 16, 77); /* Dark Amethyst */
     border: none;
     padding: 12px 20px;
     font-size: 16px;
@@ -74,22 +80,23 @@ button {
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+    transition: all 0.3s ease;
     margin-top: 10px;
 }
 
 button:hover {
-    background-color: #924c60; 
+    background-color: rgb(194, 40, 107); /* Hot Rose */
+    color: white;
     transform: translateY(-1px);
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
 }
 
-/* Responsive design */
-@media (max-width: 480px) {
-    .mdp-container {
-        padding: 25px;
-    }
-    
-    h1 {
-        font-size: 22px;
-    }
+a {
+    color: rgb(194, 40, 107); /* Hot Rose */
+    text-decoration: none;
+}
+
+a:hover {
+    color: rgb(250, 185, 64); /* Sunflower Gold */
+    text-decoration: underline;
 }
