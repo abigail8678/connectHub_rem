@@ -1,0 +1,56 @@
+body {
+  background-color: #f8f8fa;
+  margin: 5px;
+  font-family: Arial;
+}
+
+.connexion-container {
+  display: flex;
+  flex-direction: column;
+  border: 1px solid #9c5959;
+  padding: 20px;
+  border-radius: 5px;
+  width: 300px;
+  align-items: center;
+  justify-content: center;
+  background-color: #82b3f0;
+}
+.connexion-container button{
+  background-color: black;
+  color: white;
+}
+
+.mdp-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background-color: #f6f6f9;
+}
+
+.mdp-container button {
+  background-color: black;
+  color: white;
+}
+
+.mdp-container label {
+  margin-bottom: 10px;
+  height: 100px;
+}
+
+.creation-container h1{
+  text-align: center;
+}
+
+.enregistrement{
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+  justify-content: center;
+}
+
+.creation-container button {
+  background-color: black;
+  color: white;
+  width: 100px;
+}
+

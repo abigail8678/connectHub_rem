@@ -1,0 +1,15 @@
+nav{
+    ul{
+        display: flex;
+        flex-direction: column;
+        list-style: none;
+        gap: 20px;
+    }
+    li{
+        a{
+            text-decoration: none;
+            color: black;
+            font-weight: bold;
+        }
+    }
+}

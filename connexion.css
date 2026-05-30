@@ -1,0 +1,147 @@
+/* Reset CSS */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f5f5dc; /* Beige/crème clair */
+    display: flex;
+    justify-content: flex-end; /* Aligne le conteneur à droite */
+    align-items: center;
+    min-height: 100vh;
+    margin: 0;
+    padding: 40px;
+}
+
+.connexion-container {
+    background-color: white;
+    width: 100%;
+    max-width: 480px;
+    padding: 50px 40px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    margin-right: 5%; /* Espace depuis la droite */
+}
+
+h1 {
+    font-size: 28px;
+    font-weight: 600;
+    color: #333;
+    margin-bottom: 15px;
+    text-align: center;
+}
+
+.connexion-container > p {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.connexion-container > p a {
+    color: #5a6e4a;
+    text-decoration: none;
+    font-weight: 600;
+}
+
+.connexion-container > p a:hover {
+    text-decoration: underline;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 8px;
+    font-weight: 500;
+    display: block;
+}
+
+input {
+    width: 100%;
+    padding: 12px 15px;
+    font-size: 14px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+    transition: border-color 0.3s ease;
+    background-color: #fff;
+    font-family: inherit;
+}
+
+input:focus {
+    border-color: #5a6e4a;
+    box-shadow: 0 0 0 2px rgba(90, 110, 74, 0.1);
+}
+
+form a {
+    color: #5a6e4a;
+    text-decoration: none;
+    font-size: 13px;
+    margin-top: 5px;
+    align-self: flex-start;
+}
+
+form a:hover {
+    text-decoration: underline;
+}
+
+button {
+    background-color: #000000;
+    color: white;
+    border: none;
+    padding: 14px 20px;
+    font-size: 16px;
+    font-weight: 600;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    font-family: inherit;
+}
+
+button:hover {
+    background-color: #81857d;
+    transform: translateY(-1px);
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+button:active {
+    transform: translateY(0);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+    body {
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .connexion-container {
+        margin-right: 0;
+        padding: 35px 30px;
+    }
+}
+
+@media (max-width: 480px) {
+    .connexion-container {
+        padding: 25px 20px;
+    }
+    
+    h1 {
+        font-size: 24px;
+    }
+    
+    input, button {
+        padding: 10px 12px;
+    }
+}
