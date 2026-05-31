@@ -7,24 +7,23 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Ajustements spécifiques à la page */
         .contenu-page {
             max-width: 900px;
             width: 100%;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 32px;
         }
         .carte-blanche h1 {
             display: flex;
             align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.5rem;
+            gap: 13px;
+            margin-bottom: 8px;
         }
         .retour-param {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 8px;
+            margin-bottom: 16px;
             text-decoration: none;
             color: #C2286B;
             font-weight: 500;
@@ -34,14 +33,14 @@
             color: #FAB940;
         }
         .section {
-            margin-bottom: 2rem;
+            margin-bottom: 32px;
         }
         .section h2 {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            font-size: 1.3rem;
+            gap: 8px;
+            margin-bottom: 16px;
+            font-size: 21px;
         }
         .liste-bloques {
             list-style: none;
@@ -52,9 +51,9 @@
             justify-content: space-between;
             align-items: center;
             background: #F8F4FF;
-            padding: 0.8rem 1rem;
+            padding: 13px 16px;
             border-radius: 16px;
-            margin-bottom: 0.5rem;
+            margin-bottom: 8px;
             border: 1px solid rgba(91,28,46,0.1);
         }
         .nom-utilisateur strong {
@@ -64,7 +63,7 @@
             background: none;
             border: 1px solid #C2286B;
             border-radius: 40px;
-            padding: 0.3rem 1rem;
+            padding: 5px 16px;
             cursor: pointer;
             color: #C2286B;
             transition: 0.2s;
@@ -79,44 +78,38 @@
         }
         .signalement-item {
             background: #F8F4FF;
-            padding: 1rem;
+            padding: 16px;
             border-radius: 16px;
-            margin-bottom: 1rem;
+            margin-bottom: 16px;
             border: 1px solid rgba(91,28,46,0.1);
         }
         .signalement-titre {
             font-weight: bold;
-            margin-bottom: 0.3rem;
+            margin-bottom: 5px;
         }
         .signalement-date {
-            font-size: 0.75rem;
+            font-size: 12px;
             color: #5B1C2E;
-            margin-bottom: 0.5rem;
+            margin-bottom: 8px;
         }
         .signalement-retour {
             background: #FEF9F0;
-            padding: 0.5rem;
+            padding: 8px;
             border-left: 3px solid #FAB940;
-            font-size: 0.9rem;
+            font-size: 14px;
         }
         .aucun-bloque {
             color: #5B1C2E;
             font-style: italic;
-            padding: 0.5rem 0;
+            padding: 8px 0;
         }
     </style>
 </head>
 <body>
 <div class="app-layout">
-    <!-- Sidebar identique à l'accueil -->
     <aside class="sidebar">
-        <div class="sidebar-header">
-            <div class="hamburger"><i class="fas fa-bars"></i></div>
-        </div>
-        <div class="profil-container">
-            <img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar">
-            <span class="profil-nom">Jean Dupont</span>
-        </div>
+        <div class="sidebar-header"><div class="hamburger"><i class="fas fa-bars"></i></div></div>
+        <div class="profil-container"><img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar"><span class="profil-nom">Jean Dupont</span></div>
         <ul class="nav-principale">
             <li class="nav-item"><a href="accueil.html"><span class="nav-icon"><i class="fas fa-home"></i></span><span>ACCUEIL</span></a></li>
             <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-users"></i></span><span>COMMUNAUTE</span></a></li>
@@ -127,12 +120,9 @@
         </ul>
     </aside>
 
-    <!-- Contenu principal -->
     <main class="contenu-page">
         <div class="carte-blanche">
-            <a href="parametres.html" class="retour-param">
-                <i class="fas fa-arrow-left"></i> PARAMETRES
-            </a>
+            <a href="parametres.html" class="retour-param"><i class="fas fa-arrow-left"></i> PARAMETRES</a>
             <h1><i class="fas fa-shield-alt"></i> Confidentialité & sécurité</h1>
 
             <div class="section">
@@ -148,60 +138,35 @@
         </div>
     </main>
 </div>
-<footer>
-    <p>Copyright | © 2026, ConnectHub</p>
-</footer>
+<footer><p>Copyright | © 2026, ConnectHub</p></footer>
 
 <script>
-    // ---------- DONNÉES SIMULÉES ----------
-    let utilisateursBloques = [
-        { pseudo: "@troll_du_94", raison: "Spam répété" },
-        { pseudo: "@harceleur77", raison: "Messages abusifs" },
-        { pseudo: "@fake_news_bot", raison: "Désinformation" }
-    ];
+    function getUtilisateursBloques() {
+        return JSON.parse(localStorage.getItem('utilisateursBloques') || '[]');
+    }
 
-    const signalements = [
-        {
-            id: 1,
-            titre: "Signalement de commentaire injurieux",
-            date: "15/05/2026",
-            statut: "Traité",
-            retourModerateur: "Commentaire supprimé. L'utilisateur a reçu un avertissement."
-        },
-        {
-            id: 2,
-            titre: "Signalement de publication trompeuse",
-            date: "20/05/2026",
-            statut: "En cours",
-            retourModerateur: "Notre équipe analyse actuellement le contenu signalé. Une réponse vous sera apportée sous 48h."
-        },
-        {
-            id: 3,
-            titre: "Harcèlement en message privé",
-            date: "02/06/2026",
-            statut: "Résolu",
-            retourModerateur: "L'utilisateur a été suspendu temporairement. Vous pouvez le bloquer définitivement via vos paramètres."
-        }
-    ];
+    function sauvegarderBloques(bloques) {
+        localStorage.setItem('utilisateursBloques', JSON.stringify(bloques));
+    }
 
     function afficherBloques() {
         const listeEl = document.getElementById('listeBloques');
         const messageAucun = document.getElementById('messageAucunBloque');
+        const bloques = getUtilisateursBloques();
 
-        if (utilisateursBloques.length === 0) {
+        if (bloques.length === 0) {
             listeEl.innerHTML = '';
             messageAucun.style.display = 'block';
             return;
         }
-
         messageAucun.style.display = 'none';
         listeEl.innerHTML = '';
-        utilisateursBloques.forEach((user, index) => {
+        bloques.forEach((pseudo, index) => {
             const li = document.createElement('li');
             li.innerHTML = `
                 <div class="nom-utilisateur">
-                    <strong>${user.pseudo}</strong><br>
-                    <span style="font-size:0.75rem; color:#5B1C2E;">Bloqué pour : ${user.raison}</span>
+                    <strong>${pseudo}</strong><br>
+                    <span style="font-size:0.75rem; color:#5B1C2E;">Bloqué</span>
                 </div>
                 <button class="btn-debloquer" data-index="${index}">Débloquer</button>
             `;
@@ -209,19 +174,25 @@
         });
 
         document.querySelectorAll('.btn-debloquer').forEach(btn => {
-            btn.addEventListener('click', (e) => {
+            btn.addEventListener('click', () => {
                 const index = parseInt(btn.getAttribute('data-index'));
-                if (!isNaN(index)) {
-                    const pseudo = utilisateursBloques[index].pseudo;
-                    if (confirm(`Débloquer ${pseudo} ?`)) {
-                        utilisateursBloques.splice(index, 1);
-                        afficherBloques();
-                        alert(`${pseudo} a été débloqué.`);
-                    }
+                let bloques = getUtilisateursBloques();
+                const pseudo = bloques[index];
+                if (confirm(`Débloquer ${pseudo} ?`)) {
+                    bloques.splice(index, 1);
+                    sauvegarderBloques(bloques);
+                    afficherBloques();
+                    alert(`${pseudo} a été débloqué.`);
                 }
             });
         });
     }
+
+    const signalements = [
+        { id: 1, titre: "Signalement de commentaire injurieux", date: "15/05/2026", statut: "Traité", retourModerateur: "Commentaire supprimé. L'utilisateur a reçu un avertissement." },
+        { id: 2, titre: "Signalement de publication trompeuse", date: "20/05/2026", statut: "En cours", retourModerateur: "Notre équipe analyse actuellement le contenu signalé." },
+        { id: 3, titre: "Harcèlement en message privé", date: "02/06/2026", statut: "Résolu", retourModerateur: "L'utilisateur a été suspendu temporairement." }
+    ];
 
     function afficherSignalements() {
         const container = document.getElementById('listeSignalements');
