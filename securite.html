@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Confidentialité et sécurité</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ajustements spécifiques à la page */
+        .contenu-page {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .carte-blanche h1 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .retour-param {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: #C2286B;
+            font-weight: 500;
+        }
+        .retour-param:hover {
+            text-decoration: underline;
+            color: #FAB940;
+        }
+        .section {
+            margin-bottom: 2rem;
+        }
+        .section h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.3rem;
+        }
+        .liste-bloques {
+            list-style: none;
+            padding: 0;
+        }
+        .liste-bloques li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: #F8F4FF;
+            padding: 0.8rem 1rem;
+            border-radius: 16px;
+            margin-bottom: 0.5rem;
+            border: 1px solid rgba(91,28,46,0.1);
+        }
+        .nom-utilisateur strong {
+            color: #25104D;
+        }
+        .btn-debloquer {
+            background: none;
+            border: 1px solid #C2286B;
+            border-radius: 40px;
+            padding: 0.3rem 1rem;
+            cursor: pointer;
+            color: #C2286B;
+            transition: 0.2s;
+        }
+        .btn-debloquer:hover {
+            background: #C2286B;
+            color: white;
+        }
+        .liste-signalements {
+            list-style: none;
+            padding: 0;
+        }
+        .signalement-item {
+            background: #F8F4FF;
+            padding: 1rem;
+            border-radius: 16px;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(91,28,46,0.1);
+        }
+        .signalement-titre {
+            font-weight: bold;
+            margin-bottom: 0.3rem;
+        }
+        .signalement-date {
+            font-size: 0.75rem;
+            color: #5B1C2E;
+            margin-bottom: 0.5rem;
+        }
+        .signalement-retour {
+            background: #FEF9F0;
+            padding: 0.5rem;
+            border-left: 3px solid #FAB940;
+            font-size: 0.9rem;
+        }
+        .aucun-bloque {
+            color: #5B1C2E;
+            font-style: italic;
+            padding: 0.5rem 0;
+        }
+    </style>
+</head>
+<body>
+<div class="app-layout">
+    <!-- Sidebar identique à l'accueil -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="profil-container">
+            <img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar">
+            <span class="profil-nom">Jean Dupont</span>
+        </div>
+        <ul class="nav-principale">
+            <li class="nav-item"><a href="accueil.html"><span class="nav-icon"><i class="fas fa-home"></i></span><span>ACCUEIL</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-users"></i></span><span>COMMUNAUTE</span></a></li>
+            <li class="nav-item"><a href="explorer.html"><span class="nav-icon"><i class="fas fa-compass"></i></span><span>EXPLORER</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-bell"></i></span><span>NOTIFICATION</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>MESSAGERIE</span></a></li>
+            <li class="nav-item"><a href="parametres.html"><span class="nav-icon"><i class="fas fa-sliders-h"></i></span><span>PARAMETRES</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="contenu-page">
+        <div class="carte-blanche">
+            <a href="parametres.html" class="retour-param">
+                <i class="fas fa-arrow-left"></i> PARAMETRES
+            </a>
+            <h1><i class="fas fa-shield-alt"></i> Confidentialité & sécurité</h1>
+
+            <div class="section">
+                <h2><i class="fas fa-ban"></i> Utilisateurs bloqués</h2>
+                <ul id="listeBloques" class="liste-bloques"></ul>
+                <div id="messageAucunBloque" class="aucun-bloque" style="display: none;">Aucun utilisateur bloqué.</div>
+            </div>
+
+            <div class="section">
+                <h2><i class="fas fa-inbox"></i> Retour signalement</h2>
+                <ul id="listeSignalements" class="liste-signalements"></ul>
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>Copyright | © 2026, ConnectHub</p>
+</footer>
+
+<script>
+    // ---------- DONNÉES SIMULÉES ----------
+    let utilisateursBloques = [
+        { pseudo: "@troll_du_94", raison: "Spam répété" },
+        { pseudo: "@harceleur77", raison: "Messages abusifs" },
+        { pseudo: "@fake_news_bot", raison: "Désinformation" }
+    ];
+
+    const signalements = [
+        {
+            id: 1,
+            titre: "Signalement de commentaire injurieux",
+            date: "15/05/2026",
+            statut: "Traité",
+            retourModerateur: "Commentaire supprimé. L'utilisateur a reçu un avertissement."
+        },
+        {
+            id: 2,
+            titre: "Signalement de publication trompeuse",
+            date: "20/05/2026",
+            statut: "En cours",
+            retourModerateur: "Notre équipe analyse actuellement le contenu signalé. Une réponse vous sera apportée sous 48h."
+        },
+        {
+            id: 3,
+            titre: "Harcèlement en message privé",
+            date: "02/06/2026",
+            statut: "Résolu",
+            retourModerateur: "L'utilisateur a été suspendu temporairement. Vous pouvez le bloquer définitivement via vos paramètres."
+        }
+    ];
+
+    function afficherBloques() {
+        const listeEl = document.getElementById('listeBloques');
+        const messageAucun = document.getElementById('messageAucunBloque');
+
+        if (utilisateursBloques.length === 0) {
+            listeEl.innerHTML = '';
+            messageAucun.style.display = 'block';
+            return;
+        }
+
+        messageAucun.style.display = 'none';
+        listeEl.innerHTML = '';
+        utilisateursBloques.forEach((user, index) => {
+            const li = document.createElement('li');
+            li.innerHTML = `
+                <div class="nom-utilisateur">
+                    <strong>${user.pseudo}</strong><br>
+                    <span style="font-size:0.75rem; color:#5B1C2E;">Bloqué pour : ${user.raison}</span>
+                </div>
+                <button class="btn-debloquer" data-index="${index}">Débloquer</button>
+            `;
+            listeEl.appendChild(li);
+        });
+
+        document.querySelectorAll('.btn-debloquer').forEach(btn => {
+            btn.addEventListener('click', (e) => {
+                const index = parseInt(btn.getAttribute('data-index'));
+                if (!isNaN(index)) {
+                    const pseudo = utilisateursBloques[index].pseudo;
+                    if (confirm(`Débloquer ${pseudo} ?`)) {
+                        utilisateursBloques.splice(index, 1);
+                        afficherBloques();
+                        alert(`${pseudo} a été débloqué.`);
+                    }
+                }
+            });
+        });
+    }
+
+    function afficherSignalements() {
+        const container = document.getElementById('listeSignalements');
+        if (signalements.length === 0) {
+            container.innerHTML = '<li class="aucun-bloque">Aucun signalement effectué.</li>';
+            return;
+        }
+        container.innerHTML = '';
+        signalements.forEach(sig => {
+            const li = document.createElement('li');
+            li.className = 'signalement-item';
+            li.innerHTML = `
+                <div class="signalement-titre"><i class="fas fa-flag"></i> ${sig.titre}</div>
+                <div class="signalement-date"><i class="fas fa-calendar-alt"></i> ${sig.date} · Statut : ${sig.statut}</div>
+                <div class="signalement-retour"><i class="fas fa-comment-dots"></i> Retour modérateur : ${sig.retourModerateur}</div>
+            `;
+            container.appendChild(li);
+        });
+    }
+
+    afficherBloques();
+    afficherSignalements();
+</script>
+</body>
+</html>
