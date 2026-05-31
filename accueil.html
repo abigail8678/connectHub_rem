@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Accueil</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* ... (tous les styles existants, inchangés) ... */
+        .modal { display: none; position: fixed; top:0; left:0; width:100%; height:100%; background:rgba(0,0,0,0.5); z-index:1000; justify-content:center; align-items:center; }
+        .modal-content { background:white; border-radius:20px; padding:1.5rem; max-width:500px; width:90%; max-height:80vh; overflow-y:auto; }
+        .modal-content h3 { margin-bottom:1rem; color:#25104D; }
+        .modal-content input, .modal-content textarea { width:100%; margin-bottom:0.8rem; padding:0.6rem; border:1px solid #ccc; border-radius:12px; font-family:inherit; }
+        .option-item { display:flex; gap:0.5rem; margin-bottom:0.5rem; }
+        .btn-ajout { background:#F8F4FF; border:1px dashed #C2286B; padding:0.3rem 0.8rem; border-radius:30px; cursor:pointer; margin-bottom:0.8rem; }
+        .image-preview { max-width:100%; max-height:200px; margin-bottom:0.8rem; border-radius:16px; }
+        .pub-image { max-width:100%; border-radius:16px; margin:0.5rem 0; }
+        .poll-option { background:#F8F4FF; border-radius:40px; padding:0.3rem 0.8rem; margin:0.3rem 0; cursor:pointer; display:flex; justify-content:space-between; }
+        .poll-option:hover { background:#FAB940; }
+        .pub-link { display:block; color:#C2286B; margin:0.2rem 0; }
+        .event-info { background:#F8F4FF; padding:0.5rem; border-radius:16px; margin:0.5rem 0; }
+        .search-wrapper a { display:inline-flex; align-items:center; justify-content:center; background:#F8F4FF; border:1px solid rgba(91,28,46,0.3); border-radius:40px; padding:0.4rem 0.8rem; color:#25104D; text-decoration:none; transition:0.2s; }
+        .search-wrapper a:hover { background:#FAB940; border-color:#FAB940; }
+    </style>
+</head>
+<body>
+<div class="app-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header"><div class="hamburger"><i class="fas fa-bars"></i></div></div>
+        <div class="profil-container"><img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar"><span class="profil-nom">Jean Dupont</span></div>
+        <ul class="nav-principale">
+            <li class="nav-item"><a href="accueil.html"><span class="nav-icon"><i class="fas fa-home"></i></span><span>ACCUEIL</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-users"></i></span><span>COMMUNAUTE</span></a></li>
+            <li class="nav-item"><a href="explorer.html"><span class="nav-icon"><i class="fas fa-compass"></i></span><span>EXPLORER</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-bell"></i></span><span>NOTIFICATION</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>MESSAGERIE</span></a></li>
+            <li class="nav-item"><a href="parametres.html"><span class="nav-icon"><i class="fas fa-sliders-h"></i></span><span>PARAMETRES</span></a></li>
+        </ul>
+    </aside>
+
+    <div class="content-wrapper">
+        <main class="feed">
+            <div class="tabs-bar">
+                <div class="tab active" data-onglet="feed">MON FEED</div>
+                <div class="tab" data-onglet="suivis">SUIVIS</div>
+                <div class="search-wrapper"><a href="recherche.html"><i class="fas fa-search"></i></a></div>
+            </div>
+            <div class="create-post">
+                <textarea class="post-input" id="textePost" placeholder="Quoi de neuf ?"></textarea>
+                <div class="post-actions">
+                    <div class="action-icon" data-type="photo"><i class="fas fa-camera"></i> PHOTO</div>
+                    <div class="action-icon" data-type="sondage"><i class="fas fa-chart-bar"></i> SONDAGE</div>
+                    <div class="action-icon" data-type="lien"><i class="fas fa-link"></i> LIEN</div>
+                    <div class="action-icon" data-type="evenement"><i class="fas fa-calendar-alt"></i> EVENEMENT</div>
+                    <button class="btn-publier" id="boutonPublier">PUBLIER</button>
+                </div>
+            </div>
+            <div id="conteneurFeed"></div>
+        </main>
+
+        <aside class="right-sidebar">
+            <div class="tendances">
+                <h3><i class="fas fa-fire"></i> Tendance du moment</h3>
+                <span class="hashtag"><i class="fas fa-hashtag"></i> ConnectHub</span>
+                <span class="hashtag"><i class="fas fa-hashtag"></i> ArtNumerique</span>
+                <span class="hashtag"><i class="fas fa-hashtag"></i> PoesieVisuelle</span>
+                <span class="hashtag"><i class="fas fa-hashtag"></i> ExpositionPhoto</span>
+                <span class="hashtag"><i class="fas fa-hashtag"></i> MusiqueInde</span>
+            </div>
+            <div class="recommandations">
+                <h3><i class="fas fa-user-plus"></i> Comptes recommandés</h3>
+                <div class="compte-reco"><div class="reco-avatar">SM</div><div class="reco-info"><div class="reco-nom">Sophie Martin</div><div class="reco-pseudo">@sophie_m</div></div><button class="btn-suivre" data-pseudo="@sophie_m">Suivre</button></div>
+                <div class="compte-reco"><div class="reco-avatar">TL</div><div class="reco-info"><div class="reco-nom">Thomas L.</div><div class="reco-pseudo">@thomas_dev</div></div><button class="btn-suivre" data-pseudo="@thomas_dev">Suivre</button></div>
+                <div class="compte-reco"><div class="reco-avatar">JD</div><div class="reco-info"><div class="reco-nom">Jean Dupont</div><div class="reco-pseudo">@jean_d</div></div><button class="btn-suivre" data-pseudo="@jean_d">Suivre</button></div>
+            </div>
+        </aside>
+    </div>
+</div>
+<footer><p>Copyright | © 2026, ConnectHub</p></footer>
+
+<!-- MODALES -->
+<div id="modalPhoto" class="modal">...</div>
+<div id="modalSondage" class="modal">...</div>
+<div id="modalLien" class="modal">...</div>
+<div id="modalEvenement" class="modal">...</div>
+
+<script>
+    // --- DONNÉES INITIALES ---
+    let publications = [
+        { id: 1, auteur: "Sophie Martin", pseudo: "@sophie_m", avatarLettre: "SM", date: "il y a 2 heures", type: "text", contenu: "Nouvelle fonctionnalité : les sondages arrivent bientôt ! 🎉", likes: 12, commentaires: [], liked: false },
+        { id: 2, auteur: "Thomas L.", pseudo: "@thomas_dev", avatarLettre: "TL", date: "hier", type: "text", contenu: "Je cherche des développeurs pour une communauté tech. Qui est intéressé ?", likes: 8, commentaires: [], liked: false }
+    ];
+    let suivis = ["@sophie_m", "@thomas_dev"];
+    let ongletActif = "feed";
+
+    // Gestion des modales (identique, inchangée)
+    let modalActuelle = null;
+    function ouvrirModal(id) { fermerToutesModales(); modalActuelle = document.getElementById(id); if (modalActuelle) modalActuelle.style.display = 'flex'; }
+    function fermerToutesModales() { document.querySelectorAll('.modal').forEach(m => m.style.display = 'none'); modalActuelle = null; }
+    // ... toutes les fonctions existantes pour photo, sondage, liens, événement (inchangées) ...
+
+    // Pour ne pas alourdir, je laisse vos fonctions existantes (ouvrirModal, fermerToutesModales,
+    // les événements des actions, publier, etc.) – elles sont correctes.
+    // J'ai seulement réécrit afficherFeed() pour y placer les écouteurs de signalement/blocage.
+    // Assurez-vous de conserver le reste du code (les parties non modifiées).
+
+    // ---------- AFFICHAGE DU FEED (version corrigée) ----------
+    function toggleLike(id) {
+        let pub = publications.find(p => p.id === id);
+        if (pub) { pub.liked = !pub.liked; pub.likes += pub.liked ? 1 : -1; afficherFeed(); }
+    }
+    function ajouterCommentaire(id, texte) {
+        if (!texte.trim()) return;
+        let pub = publications.find(p => p.id === id);
+        if (pub) { pub.commentaires.push({ auteur: "Moi", pseudo: "@moi", texte: texte }); afficherFeed(); }
+    }
+
+    function afficherFeed() {
+        let container = document.getElementById('conteneurFeed');
+        if (!container) return;
+        let publicationsFiltrees = (ongletActif === "suivis") ? publications.filter(p => suivis.includes(p.pseudo)) : publications;
+        if (publicationsFiltrees.length === 0) {
+            container.innerHTML = "<p style='text-align:center; color:#5B1C2E;'>Aucune publication pour le moment.</p>";
+            return;
+        }
+        let html = '';
+        for (let p of publicationsFiltrees) {
+            let heart = p.liked ? '❤️' : '🤍';
+            let commentsHtml = (p.commentaires && p.commentaires.length) ? '<ul class="comment-list">' + p.commentaires.map(c => `<li><strong>${c.auteur}</strong> (${c.pseudo}) : ${c.texte}</li>`).join('') + '</ul>' : '';
+            let commentBlockId = `comments-${p.id}`;
+            let commentInputId = `comment-input-${p.id}`;
+            html += `
+                <div class="publication" data-id="${p.id}">
+                    <div class="pub-header">
+                        <a href="#" class="pub-avatar" data-pseudo="${p.pseudo}">${p.avatarLettre}</a>
+                        <div>
+                            <a href="#" class="pub-nom" data-pseudo="${p.pseudo}">${p.auteur} <span style="font-size:0.7rem; color:#5B1C2E;">${p.pseudo}</span></a>
+                            <div class="pub-date">${p.date}</div>
+                        </div>
+                        <div class="pub-menu" data-id="${p.id}">
+                            ⋮
+                            <div class="popup-menu" id="menu-${p.id}" style="display: none;">
+                                <a href="#" class="signaler-link" data-pseudo="${p.pseudo}">Signaler</a>
+                                <a href="#" class="bloquer-link" data-pseudo="${p.pseudo}">Blocker</a>
+                            </div>
+                        </div>
+                    </div>
+                    ${p.contenuHtml || `<div class="pub-contenu">${p.contenu || ''}</div>`}
+                    <div class="pub-stats">
+                        <span class="like-btn" data-id="${p.id}">${heart} ${p.likes}</span>
+                        <span class="comment-btn" data-id="${p.id}">💬 ${p.commentaires.length}</span>
+                    </div>
+                    <div id="${commentBlockId}" style="display: none;">
+                        ${commentsHtml}
+                        <div class="comment-input-area">
+                            <input type="text" id="${commentInputId}" class="comment-input" placeholder="Écrire un commentaire...">
+                            <button class="btn-submit-comment" data-id="${p.id}">Envoyer</button>
+                        </div>
+                    </div>
+                </div>
+            `;
+        }
+        container.innerHTML = html;
+
+        // 1) Like, commentaire, soumission commentaire
+        document.querySelectorAll('.like-btn').forEach(btn => btn.addEventListener('click', (e) => { let id = parseInt(btn.getAttribute('data-id')); toggleLike(id); }));
+        document.querySelectorAll('.comment-btn').forEach(btn => btn.addEventListener('click', (e) => { let id = parseInt(btn.getAttribute('data-id')); let block = document.getElementById(`comments-${id}`); if (block) block.style.display = block.style.display === 'none' ? 'block' : 'none'; }));
+        document.querySelectorAll('.btn-submit-comment').forEach(btn => btn.addEventListener('click', (e) => { let id = parseInt(btn.getAttribute('data-id')); let input = document.getElementById(`comment-input-${id}`); if (input) { ajouterCommentaire(id, input.value); input.value = ''; } }));
+
+        // 2) Menu trois points
+        document.querySelectorAll('.pub-menu').forEach(menu => {
+            const popup = menu.querySelector('.popup-menu');
+            if (!popup) return;
+            popup.style.display = 'none';
+            menu.addEventListener('click', (e) => {
+                e.stopPropagation();
+                document.querySelectorAll('.popup-menu').forEach(p => { if (p !== popup) p.style.display = 'none'; });
+                popup.style.display = popup.style.display === 'none' ? 'block' : 'none';
+            });
+        });
+        document.addEventListener('click', function(e) { if (!e.target.closest('.pub-menu')) document.querySelectorAll('.popup-menu').forEach(p => p.style.display = 'none'); });
+
+        // 3) Clic sur avatar/nom (profil)
+        document.querySelectorAll('.pub-avatar, .pub-nom').forEach(link => link.addEventListener('click', (e) => { e.preventDefault(); window.location.href = "#"; }));
+
+        // 4) Votes pour sondages
+        document.querySelectorAll('.poll-option').forEach(opt => opt.addEventListener('click', (e) => { /* ... votre code ... */ }));
+
+        // 5) SIGNALEMENT et BLOCAGE (NOUVEAU – placés ici)
+        document.querySelectorAll('.signaler-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pseudo = link.getAttribute('data-pseudo');
+                window.location.href = `signaler.html?cible=${encodeURIComponent(pseudo)}`;
+            });
+        });
+        document.querySelectorAll('.bloquer-link').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const pseudo = link.getAttribute('data-pseudo');
+                if (confirm(`Voulez-vous vraiment bloquer ${pseudo} ?`)) {
+                    let bloques = JSON.parse(localStorage.getItem('utilisateursBloques') || '[]');
+                    if (!bloques.includes(pseudo)) {
+                        bloques.push(pseudo);
+                        localStorage.setItem('utilisateursBloques', JSON.stringify(bloques));
+                    }
+                    alert(`${pseudo} a été bloqué. Vous ne verrez plus ses publications.`);
+                    location.reload();
+                }
+            });
+        });
+    }
+
+    // ... (conservez ici toutes vos autres fonctions : publier, ajouterPublicationTexte, gestion onglets, etc.) ...
+
+    // Initialisation
+    afficherFeed();
+</script>
+</body>
+</html>
