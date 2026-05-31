@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Mon compte</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ajustements spécifiques pour la page Mon compte */
+        .contenu-page {
+            max-width: 800px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .carte-blanche h1 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 0.5rem;
+        }
+        .carte-blanche h1 i {
+            color: #C2286B;
+        }
+        .retour-param {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: #C2286B;
+            font-weight: 500;
+        }
+        .retour-param:hover {
+            text-decoration: underline;
+            color: #FAB940;
+        }
+        .infos-compte {
+            margin-bottom: 2rem;
+        }
+        .actions {
+            display: flex;
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .actions button {
+            flex: 1;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="app-layout">
+    <!-- Sidebar identique à l'accueil -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="profil-container">
+            <img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar">
+            <span class="profil-nom">Jean Dupont</span>
+        </div>
+        <ul class="nav-principale">
+            <li class="nav-item"><a href="accueil.html"><span class="nav-icon"><i class="fas fa-home"></i></span><span>ACCUEIL</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-users"></i></span><span>COMMUNAUTE</span></a></li>
+            <li class="nav-item"><a href="e"><span class="nav-icon"><i class="fas fa-compass"></i></span><span>EXPLORER</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-bell"></i></span><span>NOTIFICATION</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>MESSAGERIE</span></a></li>
+            <li class="nav-item"><a href="parametres.html"><span class="nav-icon"><i class="fas fa-sliders-h"></i></span><span>PARAMETRES</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="contenu-page">
+        <div class="carte-blanche">
+            <!-- Flèche de retour vers Paramètres -->
+            <a href="parametres.html" class="retour-param">
+                <i class="fas fa-arrow-left"></i> PARAMETRES
+            </a>
+            <h1><i class="fas fa-user-circle"></i> Mon compte</h1>
+            <h2><i class="fas fa-address-card"></i> Information du compte</h2>
+            <div class="infos-compte">
+                <span class="label"><i class="fas fa-user"></i> NOM :</span>
+                <span class="valeur" id="nom">DUPONT</span>
+
+                <span class="label"><i class="fas fa-user"></i> PRENOM :</span>
+                <span class="valeur" id="prenom">Jean</span>
+
+                <span class="label"><i class="fas fa-calendar-alt"></i> DATE DE NAISSANCE :</span>
+                <span class="valeur" id="naissance">15/03/1990</span>
+
+                <span class="label"><i class="fas fa-venus-mars"></i> GENRE :</span>
+                <span class="valeur" id="genre">Homme</span>
+
+                <span class="label"><i class="fas fa-envelope"></i> E-MAIL :</span>
+                <span class="valeur" id="email">jean.dupont@connecthub.fr</span>
+
+                <span class="label"><i class="fas fa-phone-alt"></i> NUMERO DE TELEPHONE :</span>
+                <span class="valeur" id="tel">+33 6 12 34 56 78</span>
+            </div>
+            <div class="actions">
+                <button id="btnDeconnexion"><i class="fas fa-sign-out-alt"></i> SE DÉCONNECTER</button>
+                <button id="btnSupprimer"><i class="fas fa-trash-alt"></i> SUPPRIMER LE COMPTE</button>
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>Copyright | © 2026, ConnectHub</p>
+</footer>
+
+<script>
+    const btnDeconnexion = document.getElementById('btnDeconnexion');
+    const btnSupprimer = document.getElementById('btnSupprimer');
+
+    btnDeconnexion.addEventListener('click', () => {
+        if (confirm("Voulez-vous vous déconnecter ?")) {
+            // TODO: rediriger vers la page de connexion (connexion.html)
+            window.location.href = "#";
+        }
+    });
+
+    btnSupprimer.addEventListener('click', () => {
+        if (confirm("⚠️ Attention : cette action est irréversible. Voulez-vous vraiment supprimer votre compte ? Cela entraînera la suppression de toutes vos données.")) {
+            const mdp = prompt("Veuillez saisir votre mot de passe pour confirmer la suppression :");
+            if (mdp !== null && mdp.trim() !== "") {
+                // =====================================================
+                // 🔧 EMPLACEMENT POUR L'APPEL BACKEND (SUPPRESSION EN BASE)
+                // -----------------------------------------------------
+                // Ici, vous enverrez une requête à votre serveur (PHP, Node, etc.)
+                // pour supprimer définitivement l'utilisateur de la base de données.
+                // Exemple avec fetch() :
+                /*
+                fetch('/api/supprimer-compte', {
+                    method: 'DELETE',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ motDePasse: mdp })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        alert("Votre compte a été supprimé.");
+                        window.location.href = "accueil.html";
+                    } else {
+                        alert("Erreur : " + data.message);
+                    }
+                })
+                .catch(err => alert("Erreur technique, veuillez réessayer."));
+                */
+                // =====================================================
+                // Simulation actuelle (à remplacer par le vrai appel)
+                alert("Votre compte a été supprimé (simulation). Redirection vers l'accueil.");
+                window.location.href = "accueil.html";
+            } else {
+                alert("Mot de passe incorrect ou annulation. Suppression annulée.");
+            }
+        }
+    });
+</script>
+</body>
+</html>
