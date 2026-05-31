@@ -10,13 +10,13 @@
         .contenu-page {
             max-width: 800px;
             margin: 0 auto;
-            padding: 2rem;
+            padding: 32px;
         }
         .retour-param {
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
+            gap: 8px;
+            margin-bottom: 16px;
             text-decoration: none;
             color: #C2286B;
             font-weight: 500;
@@ -26,37 +26,37 @@
             color: #FAB940;
         }
         .formulaire-aide {
-            margin-top: 1rem;
+            margin-top: 16px;
         }
         .formulaire-aide h2 {
             display: flex;
             align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1.2rem;
-            font-size: 1.3rem;
+            gap: 8px;
+            margin-bottom: 19px;
+            font-size: 21px;
             color: #25104D;
         }
         .groupe-champ {
-            margin-bottom: 1.2rem;
+            margin-bottom: 19px;
         }
         .groupe-champ label {
             display: block;
             font-weight: 600;
-            margin-bottom: 0.4rem;
+            margin-bottom: 6px;
             color: #25104D;
         }
         .groupe-champ label i {
-            margin-right: 0.4rem;
+            margin-right: 6px;
             color: #C2286B;
         }
         .groupe-champ input,
         .groupe-champ textarea {
             width: 100%;
-            padding: 0.7rem;
+            padding: 11px;
             border: 1px solid rgba(91, 28, 46, 0.3);
             border-radius: 16px;
             font-family: inherit;
-            font-size: 0.9rem;
+            font-size: 14px;
             background: white;
             transition: border 0.2s;
         }
@@ -70,27 +70,27 @@
             background: #FAB940;
             color: #25104D;
             border: none;
-            padding: 0.7rem 1.5rem;
-            font-size: 1rem;
+            padding: 11px 24px;
+            font-size: 16px;
             border-radius: 40px;
             cursor: pointer;
             font-weight: 600;
             transition: 0.2s;
             display: inline-flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 8px;
         }
         .btn-envoyer:hover {
             background: #C2286B;
             color: white;
         }
         .message-info {
-            font-size: 0.8rem;
+            font-size: 13px;
             color: #5B1C2E;
-            margin-top: 0.8rem;
+            margin-top: 13px;
             display: flex;
             align-items: center;
-            gap: 0.4rem;
+            gap: 6px;
         }
     </style>
 </head>
@@ -120,7 +120,6 @@
             <a href="parametres.html" class="retour-param">
                 <i class="fas fa-arrow-left"></i> Paramètres
             </a>
-            <!-- Icône changée : fa-headset (casque d'assistance) -->
             <h1><i class="fas fa-headset"></i> Centre d'aide</h1>
 
             <div class="formulaire-aide">
@@ -128,7 +127,7 @@
                 <form id="formulaireContact">
                     <div class="groupe-champ">
                         <label for="nomComplet"><i class="fas fa-user"></i> NOM COMPLET</label>
-                        <input type="text" id="nomComplet" name="nomComplet" placeholder="Votre prénom et nom" required>
+                        <input type="text" id="nomComplet" name="nom" placeholder="Votre prénom et nom" required>
                     </div>
                     <div class="groupe-champ">
                         <label for="email"><i class="fas fa-at"></i> ADRESSE MAIL</label>
@@ -150,7 +149,8 @@
 </footer>
 
 <script>
-    document.getElementById('formulaireContact').addEventListener('submit', function(e) {
+    // Gestion de l'envoi du formulaire (appel AJAX vers aide.php)
+    document.getElementById('formulaireContact').addEventListener('submit', async function(e) {
         e.preventDefault();
         const nom = document.getElementById('nomComplet').value.trim();
         const email = document.getElementById('email').value.trim();
@@ -161,9 +161,28 @@
             return;
         }
 
-        // 🔧 Emplacement pour backend (envoi du formulaire)
-        alert(`Merci ${nom}, votre message a bien été envoyé.\nNous vous répondrons sur ${email} dans les plus brefs délais.`);
-        this.reset();
+        // Préparer les données pour l'envoi
+        const formData = new FormData();
+        formData.append('nom', nom);
+        formData.append('email', email);
+        formData.append('message', message);
+
+        try {
+            // Appel au fichier PHP aide.php 
+            const response = await fetch('aide.php', {
+                method: 'POST',
+                body: formData
+            });
+            const result = await response.text();
+            if (response.ok && result === 'success') {
+                alert("Merci ! Votre message a été envoyé aux modérateurs. Ils vous répondront rapidement.");
+                document.getElementById('formulaireContact').reset();
+            } else {
+                alert("Erreur : " + (result || "Problème technique, veuillez réessayer."));
+            }
+        } catch (error) {
+            alert("Erreur réseau : impossible de contacter le serveur. Vérifiez votre connexion.");
+        }
     });
 </script>
 </body>
