@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Questions fréquentes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .contenu-page {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .retour-param {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: #C2286B;
+            font-weight: 500;
+        }
+        .retour-param:hover {
+            text-decoration: underline;
+            color: #FAB940;
+        }
+        .faq-item {
+            background: #F8F4FF;
+            border-radius: 16px;
+            padding: 1.2rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(91,28,46,0.1);
+            transition: background 0.2s;
+        }
+        .faq-item:hover {
+            background: #FEF9F0;
+        }
+        .faq-question {
+            font-weight: bold;
+            font-size: 1.05rem;
+            margin-bottom: 0.5rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #25104D;
+        }
+        .faq-question i {
+            color: #C2286B;
+        }
+        .faq-reponse {
+            color: #2C3E50;
+            line-height: 1.4;
+            padding-left: 1.8rem;
+        }
+    </style>
+</head>
+<body>
+<div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="profil-container">
+            <img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar">
+            <span class="profil-nom">Jean Dupont</span>
+        </div>
+        <ul class="nav-principale">
+            <li class="nav-item"><a href="accueil.html"><span class="nav-icon"><i class="fas fa-home"></i></span><span>ACCUEIL</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-users"></i></span><span>COMMUNAUTE</span></a></li>
+            <li class="nav-item"><a href="explorer.html"><span class="nav-icon"><i class="fas fa-compass"></i></span><span>EXPLORER</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-bell"></i></span><span>NOTIFICATION</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>MESSAGERIE</span></a></li>
+            <li class="nav-item"><a href="parametres.html"><span class="nav-icon"><i class="fas fa-sliders-h"></i></span><span>PARAMETRES</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="contenu-page">
+        <div class="carte-blanche">
+            <a href="info.html" class="retour-param">
+                <i class="fas fa-arrow-left"></i> INFORMATION COMPLÉMENTAIRE
+            </a>
+            <h1><i class="fas fa-question-circle"></i> Questions fréquentes</h1>
+
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-users"></i> Comment créer une communauté ?</div>
+                <div class="faq-reponse">Rendez-vous dans l’onglet « Communauté » puis cliquez sur « Créer un groupe ». Remplissez les informations et choisissez les paramètres de confidentialité.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-flag"></i> Comment signaler un contenu inapproprié ?</div>
+                <div class="faq-reponse">Cliquez sur les trois points (⋮) en haut à droite d’une publication, puis choisissez « Signaler ». Notre équipe de modération examinera votre signalement sous 48h.</div>
+            </div>
+            <!-- Remplacement : plus de doublon, on parle du centre d'aide -->
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-headset"></i> Je ne trouve pas de solution, que faire ?</div>
+                <div class="faq-reponse">Rendez-vous dans la section « Centre d’aide » accessible depuis les paramètres. Vous pourrez y remplir un formulaire de contact. Notre équipe vous répondra sous 48h.</div>
+            </div>
+            <div class="faq-item">
+                <div class="faq-question"><i class="fas fa-lock"></i> Les données personnelles sont-elles protégées ?</div>
+                <div class="faq-reponse">Absolument. ConnectHub respecte le RGPD et crypte vos informations sensibles.</div>
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>Copyright | © 2026, ConnectHub</p>
+</footer>
+</body>
+</html>
