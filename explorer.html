@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Explorer</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .explorer-container {
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .explorer-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 2rem;
+        }
+        .explorer-header h1 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .search-icon {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            background: #F8F4FF;
+            border: 1px solid rgba(91,28,46,0.3);
+            border-radius: 40px;
+            padding: 0.5rem 0.9rem;
+            color: #25104D;
+            text-decoration: none;
+            transition: 0.2s;
+        }
+        .search-icon:hover {
+            background: #FAB940;
+            border-color: #FAB940;
+        }
+        /* Trois colonnes horizontales */
+        .sections-row {
+            display: flex;
+            flex-wrap: wrap; /* pour le responsive */
+            gap: 1.5rem;
+        }
+        .section {
+            flex: 1;
+            min-width: 250px;
+            background: #FFFFFF;
+            border-radius: 20px;
+            padding: 1rem;
+            border: 1px solid rgba(91,28,46,0.1);
+            box-shadow: 0 2px 6px rgba(0,0,0,0.02);
+        }
+        .section h2 {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            font-size: 1.2rem;
+            color: #25104D;
+            border-bottom: 1px solid rgba(91,28,46,0.2);
+            padding-bottom: 0.5rem;
+        }
+        .grille {
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+        .carte {
+            background: #F8F4FF;
+            border-radius: 16px;
+            padding: 0.8rem;
+            border: 1px solid rgba(91,28,46,0.1);
+            transition: all 0.2s;
+            cursor: pointer;
+        }
+        .carte:hover {
+            background: #FEF9F0;
+            transform: translateY(-2px);
+        }
+        .carte-titre {
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #25104D;
+        }
+        .carte-detail {
+            font-size: 0.8rem;
+            color: #5B1C2E;
+            margin-top: 0.2rem;
+            padding-left: 1.8rem;
+        }
+        .btn-follow {
+            margin-top: 0.5rem;
+            background: none;
+            border: 1px solid #C2286B;
+            border-radius: 30px;
+            padding: 0.2rem 0.8rem;
+            font-size: 0.7rem;
+            cursor: pointer;
+            color: #C2286B;
+        }
+        .btn-follow:hover {
+            background: #C2286B;
+            color: white;
+        }
+        @media (max-width: 900px) {
+            .sections-row {
+                flex-direction: column;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="profil-container">
+            <img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar">
+            <span class="profil-nom">Jean Dupont</span>
+        </div>
+        <ul class="nav-principale">
+            <li class="nav-item"><a href="accueil.html"><span class="nav-icon"><i class="fas fa-home"></i></span><span>ACCUEIL</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-users"></i></span><span>COMMUNAUTE</span></a></li>
+            <li class="nav-item"><a href="explorer.html"><span class="nav-icon"><i class="fas fa-compass"></i></span><span>EXPLORER</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-bell"></i></span><span>NOTIFICATION</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>MESSAGERIE</span></a></li>
+            <li class="nav-item"><a href="parametres.html"><span class="nav-icon"><i class="fas fa-sliders-h"></i></span><span>PARAMETRES</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="explorer-container">
+        <div class="carte-blanche">
+            <div class="explorer-header">
+                <h1><i class="fas fa-compass"></i> Explorer</h1>
+                <a href="recherche.html" class="search-icon"><i class="fas fa-search"></i></a>
+            </div>
+
+            <div class="sections-row">
+                <!-- Personnes -->
+                <div class="section">
+                    <h2><i class="fas fa-users"></i> Personnes</h2>
+                    <div class="grille" id="personnesContainer"></div>
+                </div>
+
+                <!-- Tendance -->
+                <div class="section">
+                    <h2><i class="fas fa-fire"></i> Tendance</h2>
+                    <div class="grille" id="tendanceContainer"></div>
+                </div>
+
+                <!-- Communauté -->
+                <div class="section">
+                    <h2><i class="fas fa-building"></i> Communauté</h2>
+                    <div class="grille" id="communautesContainer"></div>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>Copyright | © 2026, ConnectHub</p>
+</footer>
+
+<script>
+    // Données simulées
+    const personnes = [
+        { nom: "Sophie Martin", pseudo: "@sophie_m", bio: "Peintre et illustratrice", followers: 1234 },
+        { nom: "Thomas L.", pseudo: "@thomas_dev", bio: "Développeur et passionné d'art numérique", followers: 892 },
+        { nom: "Jean Dupont", pseudo: "@jean_d", bio: "Photographe freelance", followers: 2345 },
+        { nom: "Marie Curie", pseudo: "@marie_art", bio: "Sculptrice contemporaine", followers: 567 }
+    ];
+
+    const tendances = [
+        { hashtag: "#ArtNumerique", mentions: 1234 },
+        { hashtag: "#PoesieVisuelle", mentions: 892 },
+        { hashtag: "#ExpositionPhoto", mentions: 456 },
+        { hashtag: "#ConcertLive", mentions: 789 },
+        { hashtag: "#DanseContemporaine", mentions: 345 }
+    ];
+
+    const communautes = [
+        { nom: "Peinture à l'huile", description: "Partagez vos œuvres", membres: 234 },
+        { nom: "Poésie moderne", description: "Échanges poétiques", membres: 128 },
+        { nom: "Photographie urbaine", description: "Capture urbaine", membres: 456 },
+        { nom: "Musique électronique", description: "Création musicale", membres: 89 }
+    ];
+
+    function afficherPersonnes() {
+        const container = document.getElementById('personnesContainer');
+        let html = '';
+        personnes.forEach(p => {
+            html += `
+                <div class="carte" data-pseudo="${p.pseudo}">
+                    <div class="carte-titre"><i class="fas fa-user-circle"></i> ${p.nom} (${p.pseudo})</div>
+                    <div class="carte-detail">${p.bio} · ${p.followers} abonnés</div>
+                    <button class="btn-follow">Suivre</button>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+        attachEvents('#personnesContainer', 'personne');
+    }
+
+    function afficherTendances() {
+        const container = document.getElementById('tendanceContainer');
+        let html = '';
+        tendances.forEach(t => {
+            html += `
+                <div class="carte" data-hashtag="${t.hashtag}">
+                    <div class="carte-titre"><i class="fas fa-hashtag"></i> ${t.hashtag}</div>
+                    <div class="carte-detail">${t.mentions} mentions</div>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+        attachEvents('#tendanceContainer', 'hashtag');
+    }
+
+    function afficherCommunautes() {
+        const container = document.getElementById('communautesContainer');
+        let html = '';
+        communautes.forEach(c => {
+            html += `
+                <div class="carte" data-communaute="${c.nom}">
+                    <div class="carte-titre"><i class="fas fa-users"></i> ${c.nom}</div>
+                    <div class="carte-detail">${c.description} · ${c.membres} membres</div>
+                    <button class="btn-follow">Rejoindre</button>
+                </div>
+            `;
+        });
+        container.innerHTML = html;
+        attachEvents('#communautesContainer', 'communaute');
+    }
+
+    function attachEvents(selector, type) {
+        document.querySelectorAll(`${selector} .carte`).forEach(card => {
+            card.addEventListener('click', (e) => {
+                if (e.target.classList.contains('btn-follow')) {
+                    e.stopPropagation();
+                    alert(type === 'communaute' ? "Rejoindre (à venir)" : "Suivre (à venir)");
+                    return;
+                }
+                if (type === 'personne') {
+                    alert("Profil de " + card.getAttribute('data-pseudo'));
+                } else if (type === 'hashtag') {
+                    alert("Recherche de " + card.getAttribute('data-hashtag'));
+                } else if (type === 'communaute') {
+                    alert("Communauté : " + card.getAttribute('data-communaute'));
+                }
+            });
+        });
+    }
+
+    afficherPersonnes();
+    afficherTendances();
+    afficherCommunautes();
+</script>
+</body>
+</html>
