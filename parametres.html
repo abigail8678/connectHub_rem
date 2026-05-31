@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Paramètres</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Ajustements spécifiques à la page paramètres */
+        .parametres-container {
+            display: flex;
+            align-items: center;      /* centrage vertical */
+            justify-content: center;
+            max-width: 700px;         /* réduction de la largeur */
+            width: 100%;
+            margin: 0 auto;
+            min-height: calc(100vh - 100px);
+        }
+        .param-card {
+            width: 100%;
+            margin: 2rem 0;
+        }
+        .param-card h1 {
+            margin-bottom: 1rem;
+        }
+        .param-card h2 {
+            margin-top: 1.8rem;
+            margin-bottom: 0.8rem;
+        }
+        /* ACCÈS RAPIDE : décalage vers la droite */
+        .liens-rapides {
+            list-style: none;
+            padding-left: 1.5rem;
+        }
+        .liens-rapides li {
+            margin-bottom: 0.8rem;
+        }
+        .liens-rapides a {
+            text-decoration: none;
+            color: #25104D;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.8rem;
+        }
+        .liens-rapides a:hover {
+            color: #C2286B;
+            text-decoration: none;
+        }
+        /* Résultats de recherche : suppression puces + soulignement */
+        .results ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .results li {
+            margin-bottom: 0.6rem;
+        }
+        .results a {
+            text-decoration: none;
+            color: #25104D;
+            transition: color 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.6rem;
+        }
+        .results a:hover {
+            color: #C2286B;
+            text-decoration: none;
+        }
+        .results i {
+            width: 24px;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+<div class="app-layout">
+    <!-- Sidebar -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="profil-container">
+            <img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar">
+            <span class="profil-nom">Jean Dupont</span>
+        </div>
+        <ul class="nav-principale">
+            <li class="nav-item"><a href="accueil.html"><span class="nav-icon"><i class="fas fa-home"></i></span><span>ACCUEIL</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-users"></i></span><span>COMMUNAUTE</span></a></li>
+            <li class="nav-item"><a href="explorer.html"><span class="nav-icon"><i class="fas fa-compass"></i></span><span>EXPLORER</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-bell"></i></span><span>NOTIFICATION</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>MESSAGERIE</span></a></li>
+            <li class="nav-item"><a href="parametres.html"><span class="nav-icon"><i class="fas fa-sliders-h"></i></span><span>PARAMETRES</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="parametres-container">
+        <div class="param-card">
+            <h1><i class="fas fa-cog"></i> PARAMETRE</h1>
+            <h2><i class="fas fa-search"></i> RECHERCHE</h2>
+            <div class="search-box">
+                <input type="text" id="rechercheInput" placeholder="Saisissez un mot-clé" autocomplete="off">
+            </div>
+            <div id="resultatsRecherche" class="results"></div>
+            <br>
+            <ul class="liens-rapides">
+                <li><a href="moncompte.html"><i class="fas fa-user-circle"></i> Mon compte</a></li>
+                <li><a href="securite.html"><i class="fas fa-shield-alt"></i> Confidentialité et sécurité</a></li>
+                <li><a href="info.html"><i class="fas fa-circle-info"></i> information complémentaire</a></li>
+                <li><a href="aide.html"><i class="fas fa-question-circle"></i> centre d’aide</a></li>
+            </ul>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>Copyright | © 2026, ConnectHub</p>
+</footer>
+
+<script>
+    const indexRecherche = [
+        { titre: "Information du compte", url: "moncompte.html#information"},
+        { titre: "Supprimer le compte", url: "moncompte.html#supprimer" },
+        { titre: "Se déconnecter", url: "moncompte.html#deconnexion" },
+        { titre: "Utilisateurs bloqués", url: "securite.html#bloques" },
+        { titre: "Retour signalement", url: "securite.html#signalement" },
+        { titre: "Questions fréquentes", url: "info.html#faq" },
+        { titre: "Conditions d’utilisations", url: "info.html#conditions" },
+        { titre: "Nous contacter", url: "aide.html#contact" },
+    ];
+
+    const inputRecherche = document.getElementById('rechercheInput');
+    const conteneurResultats = document.getElementById('resultatsRecherche');
+
+    function filtrerEtAfficher() {
+        const terme = inputRecherche.value.trim().toLowerCase();
+        if (terme === "") {
+            conteneurResultats.innerHTML = "";
+            return;
+        }
+        const correspondances = indexRecherche.filter(item =>
+            item.titre.toLowerCase().includes(terme)
+        );
+        if (correspondances.length === 0) {
+            conteneurResultats.innerHTML = '<p class="no-result">Aucun résultat. Essayez "conditions", "compte", "sécurité"...</p>';
+            return;
+        }
+        let html = '<ul>';
+        correspondances.forEach(item => {
+            html += `<li><a href="${item.url}"><i class="fas fa-file-alt"></i> ${item.titre}</a></li>`;
+        });
+        html += '</ul>';
+        conteneurResultats.innerHTML = html;
+    }
+
+    inputRecherche.addEventListener('input', filtrerEtAfficher);
+    filtrerEtAfficher();
+</script>
+</body>
+</html>
