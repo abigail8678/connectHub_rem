@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Recherche</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        /* Styles spécifiques à la page recherche */
+        .recherche-container {
+            max-width: 900px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .recherche-header {
+            margin-bottom: 1.5rem;
+        }
+        .recherche-header h1 {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
+            margin-bottom: 1rem;
+        }
+        .retour-accueil {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            text-decoration: none;
+            color: #C2286B;
+            font-weight: 500;
+        }
+        .retour-accueil:hover {
+            text-decoration: underline;
+            color: #FAB940;
+        }
+        .search-input-wrapper {
+            position: relative;
+        }
+        .search-input-wrapper input {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid rgba(91,28,46,0.3);
+            border-radius: 50px;
+            font-size: 1rem;
+            background: white;
+            transition: all 0.2s;
+        }
+        .search-input-wrapper input:focus {
+            outline: none;
+            border-color: #C2286B;
+            box-shadow: 0 0 0 2px rgba(194,40,107,0.1);
+        }
+        .onglets-recherche {
+            display: flex;
+            gap: 0.5rem;
+            margin: 1.5rem 0 1rem;
+            border-bottom: 1px solid rgba(91,28,46,0.2);
+            flex-wrap: wrap;
+        }
+        .onglet {
+            padding: 0.6rem 1.2rem;
+            cursor: pointer;
+            font-weight: 500;
+            color: #5B1C2E;
+            border-bottom: 2px solid transparent;
+            transition: all 0.2s;
+        }
+        .onglet.active {
+            color: #C2286B;
+            border-bottom-color: #C2286B;
+        }
+        .resultats-liste {
+            margin-top: 1.5rem;
+        }
+        .carte-resultat {
+            background: #F8F4FF;
+            border-radius: 16px;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid rgba(91,28,46,0.1);
+            transition: background 0.2s;
+        }
+        .carte-resultat:hover {
+            background: #FEF9F0;
+        }
+        .resultat-titre {
+            font-weight: bold;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: #25104D;
+        }
+        .resultat-titre i {
+            color: #C2286B;
+        }
+        .resultat-detail {
+            font-size: 0.85rem;
+            color: #5B1C2E;
+            margin-top: 0.3rem;
+            padding-left: 1.8rem;
+        }
+        .aucun-resultat {
+            text-align: center;
+            padding: 2rem;
+            color: #5B1C2E;
+            font-style: italic;
+        }
+    </style>
+</head>
+<body>
+<div class="app-layout">
+    <!-- Sidebar identique aux autres pages -->
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="profil-container">
+            <img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar">
+            <span class="profil-nom">Jean Dupont</span>
+        </div>
+        <ul class="nav-principale">
+            <li class="nav-item"><a href="accueil.html"><span class="nav-icon"><i class="fas fa-home"></i></span><span>ACCUEIL</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-users"></i></span><span>COMMUNAUTE</span></a></li>
+            <li class="nav-item"><a href="explorer.html"><span class="nav-icon"><i class="fas fa-compass"></i></span><span>EXPLORER</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-bell"></i></span><span>NOTIFICATION</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>MESSAGERIE</span></a></li>
+            <li class="nav-item"><a href="parametres.html"><span class="nav-icon"><i class="fas fa-sliders-h"></i></span><span>PARAMETRES</span></a></li>
+        </ul>
+    </aside>
+
+    <!-- Contenu principal -->
+    <main class="recherche-container">
+        <div class="carte-blanche">
+            <!-- Lien de retour vers l'accueil -->
+            <a href="accueil.html" class="retour-accueil">
+                <i class="fas fa-arrow-left"></i> ACCUEIL
+            </a>
+            <div class="recherche-header">
+                <h1><i class="fas fa-search"></i> Recherche</h1>
+                <div class="search-input-wrapper">
+                    <input type="text" id="searchInput" placeholder="Rechercher des utilisateurs, communautés, hashtags, publications..." autocomplete="off">
+                </div>
+            </div>
+
+            <!-- Onglets -->
+            <div class="onglets-recherche">
+                <div class="onglet active" data-type="utilisateurs">👥 UTILISATEURS</div>
+                <div class="onglet" data-type="communautes">🏠 COMMUNAUTES</div>
+                <div class="onglet" data-type="hashtags"># HASHTAGS</div>
+                <div class="onglet" data-type="publications">📄 PUBLICATIONS</div>
+            </div>
+
+            <!-- Zone d'affichage des résultats -->
+            <div id="resultatsContainer" class="resultats-liste">
+                <!-- Les résultats seront injectés ici -->
+            </div>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>Copyright | © 2026, ConnectHub</p>
+</footer>
+
+<script>
+    // --- DONNÉES SIMULÉES (à remplacer plus tard par des appels backend) ---
+    const utilisateurs = [
+        { nom: "Sophie Martin", pseudo: "@sophie_m", bio: "Peintre et illustratrice" },
+        { nom: "Thomas L.", pseudo: "@thomas_dev", bio: "Développeur et passionné d'art numérique" },
+        { nom: "Jean Dupont", pseudo: "@jean_d", bio: "Photographe freelance" },
+        { nom: "Marie Curie", pseudo: "@marie_art", bio: "Sculptrice contemporaine" }
+    ];
+
+    const communautes = [
+        { nom: "Peinture à l'huile", description: "Partagez vos œuvres et techniques", membres: 234 },
+        { nom: "Poésie moderne", description: "Échanges autour de la poésie contemporaine", membres: 128 },
+        { nom: "Photographie urbaine", description: "Capturer la ville sous tous ses angles", membres: 456 },
+        { nom: "Musique électronique", description: "Création et partage de morceaux", membres: 89 }
+    ];
+
+    const hashtags = [
+        "#ArtNumerique", "#Peinture", "#PoesieVisuelle", "#ExpositionPhoto", "#ConcertLive", "#DanseContemporaine", "#ConnectHub"
+    ];
+
+    // Publications (on reprend celles de l'accueil)
+    let publications = [
+        { id: 1, auteur: "Sophie Martin", pseudo: "@sophie_m", contenu: "Nouvelle série de peintures abstraites !", date: "il y a 2 heures" },
+        { id: 2, auteur: "Thomas L.", pseudo: "@thomas_dev", contenu: "Un poème sur le numérique...", date: "hier" },
+        { id: 3, auteur: "Jean Dupont", pseudo: "@jean_d", contenu: "Exposition photo à la galerie Art&Co", date: "il y a 3 jours" }
+    ];
+
+    // État actuel
+    let typeActif = "utilisateurs";
+    let termeRecherche = "";
+
+    // Éléments DOM
+    const searchInput = document.getElementById('searchInput');
+    const resultatsContainer = document.getElementById('resultatsContainer');
+    const onglets = document.querySelectorAll('.onglet');
+
+    // Fonction de filtrage selon le type et le terme
+    function filtrerResultats() {
+        const terme = termeRecherche.trim().toLowerCase();
+        let resultats = [];
+
+        if (typeActif === "utilisateurs") {
+            resultats = utilisateurs.filter(u => 
+                u.nom.toLowerCase().includes(terme) || 
+                u.pseudo.toLowerCase().includes(terme) ||
+                (u.bio && u.bio.toLowerCase().includes(terme))
+            );
+        } else if (typeActif === "communautes") {
+            resultats = communautes.filter(c => 
+                c.nom.toLowerCase().includes(terme) || 
+                c.description.toLowerCase().includes(terme)
+            );
+        } else if (typeActif === "hashtags") {
+            resultats = hashtags.filter(h => h.toLowerCase().includes(terme));
+        } else if (typeActif === "publications") {
+            resultats = publications.filter(p => 
+                p.contenu.toLowerCase().includes(terme) || 
+                p.auteur.toLowerCase().includes(terme) ||
+                p.pseudo.toLowerCase().includes(terme)
+            );
+        }
+
+        afficherResultats(resultats);
+    }
+
+    // Affichage HTML des résultats
+    function afficherResultats(resultats) {
+        if (resultats.length === 0) {
+            resultatsContainer.innerHTML = `<div class="aucun-resultat">Aucun résultat trouvé pour "${termeRecherche || '…'}"</div>`;
+            return;
+        }
+
+        let html = '';
+        resultats.forEach(item => {
+            if (typeActif === "utilisateurs") {
+                html += `
+                    <div class="carte-resultat" data-pseudo="${item.pseudo}">
+                        <div class="resultat-titre"><i class="fas fa-user-circle"></i> ${item.nom} (${item.pseudo})</div>
+                        <div class="resultat-detail">${item.bio || ''}</div>
+                    </div>
+                `;
+            } else if (typeActif === "communautes") {
+                html += `
+                    <div class="carte-resultat">
+                        <div class="resultat-titre"><i class="fas fa-users"></i> ${item.nom}</div>
+                        <div class="resultat-detail">${item.description} · ${item.membres} membres</div>
+                    </div>
+                `;
+            } else if (typeActif === "hashtags") {
+                html += `
+                    <div class="carte-resultat" data-hashtag="${item}">
+                        <div class="resultat-titre"><i class="fas fa-hashtag"></i> ${item}</div>
+                    </div>
+                `;
+            } else if (typeActif === "publications") {
+                html += `
+                    <div class="carte-resultat" data-pub-id="${item.id}">
+                        <div class="resultat-titre"><i class="fas fa-file-alt"></i> ${item.auteur} (${item.pseudo})</div>
+                        <div class="resultat-detail">${item.contenu.substring(0, 100)}${item.contenu.length > 100 ? '…' : ''}</div>
+                        <div class="resultat-detail" style="font-size:0.7rem;">${item.date}</div>
+                    </div>
+                `;
+            }
+        });
+        resultatsContainer.innerHTML = html;
+
+        // Ajouter les interactions sur les résultats (clic)
+        if (typeActif === "utilisateurs") {
+            document.querySelectorAll('.carte-resultat[data-pseudo]').forEach(card => {
+                card.addEventListener('click', () => {
+                    alert("Page de profil à venir");
+                });
+            });
+        } else if (typeActif === "hashtags") {
+            document.querySelectorAll('.carte-resultat[data-hashtag]').forEach(card => {
+                card.addEventListener('click', (e) => {
+                    const hashtag = card.getAttribute('data-hashtag');
+                    searchInput.value = hashtag;
+                    termeRecherche = hashtag;
+                    filtrerResultats();
+                });
+            });
+        } else if (typeActif === "publications") {
+            document.querySelectorAll('.carte-resultat[data-pub-id]').forEach(card => {
+                card.addEventListener('click', () => {
+                    alert("Redirection vers la publication (à venir)");
+                });
+            });
+        } else if (typeActif === "communautes") {
+            document.querySelectorAll('.carte-resultat').forEach(card => {
+                card.addEventListener('click', () => {
+                    alert("Page de la communauté à venir");
+                });
+            });
+        }
+    }
+
+    // Gestion de la saisie
+    searchInput.addEventListener('input', (e) => {
+        termeRecherche = e.target.value;
+        filtrerResultats();
+    });
+
+    // Gestion des onglets
+    onglets.forEach(onglet => {
+        onglet.addEventListener('click', () => {
+            onglets.forEach(o => o.classList.remove('active'));
+            onglet.classList.add('active');
+            typeActif = onglet.getAttribute('data-type');
+            filtrerResultats();
+        });
+    });
+
+    // Initialisation : afficher tous les utilisateurs par défaut
+    filtrerResultats();
+</script>
+</body>
+</html>
