@@ -7,47 +7,46 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link rel="stylesheet" href="style.css">
     <style>
-        /* Ajustements spécifiques pour la page Mon compte */
-        .contenu-page {
-            max-width: 800px;
-            width: 100%;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-        .carte-blanche h1 {
-            display: flex;
-            align-items: center;
-            gap: 0.8rem;
-            margin-bottom: 0.5rem;
-        }
-        .carte-blanche h1 i {
-            color: #C2286B;
-        }
-        .retour-param {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            margin-bottom: 1rem;
-            text-decoration: none;
-            color: #C2286B;
-            font-weight: 500;
-        }
-        .retour-param:hover {
-            text-decoration: underline;
-            color: #FAB940;
-        }
-        .infos-compte {
-            margin-bottom: 2rem;
-        }
-        .actions {
-            display: flex;
-            gap: 1rem;
-            margin-top: 1.5rem;
-        }
-        .actions button {
-            flex: 1;
-            text-align: center;
-        }
+      .contenu-page {
+        max-width: 800px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 32px;
+    }
+    .carte-blanche h1 {
+        display: flex;
+        align-items: center;
+        gap: 13px;
+        margin-bottom: 8px;
+    }
+    .carte-blanche h1 i {
+        color: #C2286B;
+    }
+    .retour-param {
+        display: inline-flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 16px;
+        text-decoration: none;
+        color: #C2286B;
+        font-weight: 500;
+    }
+    .retour-param:hover {
+        text-decoration: underline;
+        color: #FAB940;
+    }
+    .infos-compte {
+        margin-bottom: 32px;
+    }
+    .actions {
+        display: flex;
+        gap: 16px;
+        margin-top: 24px;
+    }
+    .actions button {
+        flex: 1;
+        text-align: center;
+    }
     </style>
 </head>
 <body>
@@ -116,7 +115,7 @@
 
     btnDeconnexion.addEventListener('click', () => {
         if (confirm("Voulez-vous vous déconnecter ?")) {
-            // TODO: rediriger vers la page de connexion (connexion.html)
+            // TODO: rediriger vers la page de connexion 
             window.location.href = "#";
         }
     });
