@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ConnectHub - Signaler un contenu</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="style.css">
+    <style>
+        .signaler-container {
+            max-width: 600px;
+            margin: 2rem auto;
+            padding: 2rem;
+        }
+        .retour-accueil {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+            text-decoration: none;
+            color: #C2286B;
+            font-weight: 500;
+        }
+        .retour-accueil:hover {
+            text-decoration: underline;
+            color: #FAB940;
+        }
+        .form-signalement {
+            margin-top: 1rem;
+        }
+        .raison-group {
+            margin-bottom: 1rem;
+        }
+        .raison-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        }
+        .raison-group textarea {
+            width: 100%;
+            padding: 0.7rem;
+            border: 1px solid rgba(91,28,46,0.3);
+            border-radius: 16px;
+            font-family: inherit;
+            resize: vertical;
+        }
+        .btn-envoyer {
+            background: #FAB940;
+            color: #25104D;
+            border: none;
+            padding: 0.7rem 1.5rem;
+            border-radius: 40px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: 0.2s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-envoyer:hover {
+            background: #C2286B;
+            color: white;
+        }
+    </style>
+</head>
+<body>
+<div class="app-layout">
+    <aside class="sidebar">
+        <div class="sidebar-header">
+            <div class="hamburger"><i class="fas fa-bars"></i></div>
+        </div>
+        <div class="profil-container">
+            <img src="https://via.placeholder.com/80?text=Avatar" alt="Photo" class="avatar">
+            <span class="profil-nom">Jean Dupont</span>
+        </div>
+        <ul class="nav-principale">
+            <li class="nav-item"><a href="accueil.html"><span class="nav-icon"><i class="fas fa-home"></i></span><span>ACCUEIL</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-users"></i></span><span>COMMUNAUTE</span></a></li>
+            <li class="nav-item"><a href="explorer.html"><span class="nav-icon"><i class="fas fa-compass"></i></span><span>EXPLORER</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-bell"></i></span><span>NOTIFICATION</span></a></li>
+            <li class="nav-item"><a href="#"><span class="nav-icon"><i class="fas fa-envelope"></i></span><span>MESSAGERIE</span></a></li>
+            <li class="nav-item"><a href="parametres.html"><span class="nav-icon"><i class="fas fa-sliders-h"></i></span><span>PARAMETRES</span></a></li>
+        </ul>
+    </aside>
+
+    <main class="signaler-container">
+        <div class="carte-blanche">
+            <a href="accueil.html" class="retour-accueil">
+                <i class="fas fa-arrow-left"></i> Retour à l'accueil
+            </a>
+            <h1><i class="fas fa-flag"></i> Signaler un contenu</h1>
+            <form id="signalementForm" class="form-signalement">
+                <div class="raison-group">
+                    <label><input type="radio" name="raison" value="contenu_inapproprié" required> Contenu inapproprié</label>
+                    <label><input type="radio" name="raison" value="harcelement"> Harcèlement</label>
+                    <label><input type="radio" name="raison" value="spam"> Spam / publicité</label>
+                    <label><input type="radio" name="raison" value="violence"> Incitation à la violence</label>
+                    <label><input type="radio" name="raison" value="autre"> Autre (précisez ci-dessous)</label>
+                </div>
+                <div class="raison-group">
+                    <label for="details">Détails supplémentaires (optionnel) :</label>
+                    <textarea id="details" rows="3" placeholder="Expliquez précisément le problème..."></textarea>
+                </div>
+                <button type="submit" class="btn-envoyer"><i class="fas fa-paper-plane"></i> Envoyer le signalement</button>
+            </form>
+        </div>
+    </main>
+</div>
+<footer>
+    <p>Copyright | © 2026, ConnectHub</p>
+</footer>
+
+<script>
+    document.getElementById('signalementForm').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const raison = document.querySelector('input[name="raison"]:checked')?.value || '';
+        const details = document.getElementById('details').value.trim();
+        if (!raison) {
+            alert("Veuillez sélectionner une raison.");
+            return;
+        }
+        // Simulation d'envoi
+        alert(`Merci pour votre signalement (${raison}).\nNos modérateurs traiteront votre demande sous 48h.`);
+        // Redirection vers l'accueil
+        window.location.href = "accueil.html";
+    });
+</script>
+</body>
+</html>
